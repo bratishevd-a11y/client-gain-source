@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Агентство лидогенерации: реклама, воронки и заявки для B2B. До 300 заинтересованных клиентов в месяц — работаем на результат.",
       },
-      { property: "og:title", content: "Leadflow — поток клиентов за 7 дней" },
+      { property: "og:title", content: "Leadflow — поток клиентов в ваш бизнес за 7 дней" },
       {
         property: "og:description",
         content:
@@ -91,6 +91,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Leadflow — поток клиентов в ваш бизнес за 7 дней" },
+      { name: "description", content: "Агентство лидогенерации: реклама, воронки и заявки для B2B. До 300 заинтересованных клиентов в месяц — работаем на результат." },
+      { property: "og:description", content: "Агентство лидогенерации: реклама, воронки и заявки для B2B. До 300 заинтересованных клиентов в месяц — работаем на результат." },
+      { name: "twitter:description", content: "Агентство лидогенерации: реклама, воронки и заявки для B2B. До 300 заинтересованных клиентов в месяц — работаем на результат." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/374c4b0e-7297-43b6-bedd-3d53e10d78d4/id-preview-b28e72d0--711d2cc8-8568-4af5-af16-0e711e045113.lovable.app-1783312506703.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/374c4b0e-7297-43b6-bedd-3d53e10d78d4/id-preview-b28e72d0--711d2cc8-8568-4af5-af16-0e711e045113.lovable.app-1783312506703.png" },
     ],
     links: [
       {
