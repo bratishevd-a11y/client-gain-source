@@ -211,6 +211,8 @@ function Hero() {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 800], [0, -80]);
   const y2 = useTransform(scrollY, [0, 800], [0, 60]);
+  const headline = ["Получайте", "поток", "клиентов", "в", "свой", "бизнес", "уже", "через", "7", "дней"];
+  const accentIdx = new Set([4, 5]); // "свой бизнес"
   return (
     <section
       id="home"
@@ -221,49 +223,124 @@ function Hero() {
         style={{ background: "var(--gradient-hero)" }}
       />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px] opacity-40 [background:radial-gradient(circle_at_50%_0%,oklch(0.68_0.17_240/0.3),transparent_60%)]" />
+      {/* Animated gradient orbs */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -z-10 h-[520px] w-[520px] rounded-full blur-3xl"
+        style={{
+          top: "8%",
+          left: "-10%",
+          background:
+            "radial-gradient(circle, oklch(0.68 0.17 240 / 0.35), transparent 65%)",
+        }}
+        animate={{ x: [0, 80, 0], y: [0, 40, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -z-10 h-[420px] w-[420px] rounded-full blur-3xl"
+        style={{
+          bottom: "5%",
+          right: "-8%",
+          background:
+            "radial-gradient(circle, oklch(0.55 0.19 260 / 0.3), transparent 65%)",
+        }}
+        animate={{ x: [0, -60, 0], y: [0, -30, 0], scale: [1, 1.15, 1] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* Animated grid */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08] [background-image:linear-gradient(oklch(1_0_0/0.6)_1px,transparent_1px),linear-gradient(90deg,oklch(1_0_0/0.6)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
+      />
       <div className="container-x grid items-center gap-12 pb-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-32">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+          }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border hairline bg-white/[0.03] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-muted-foreground)]">
+          <motion.span
+            variants={{
+              hidden: { opacity: 0, y: 12 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+            }}
+            className="inline-flex items-center gap-2 rounded-full border hairline bg-white/[0.03] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-muted-foreground)]"
+          >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
             </span>
             Агентство лидогенерации
-          </span>
-          <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-[64px]">
-            Получайте поток клиентов в{" "}
-            <span className="text-gradient">свой бизнес</span> уже через 7 дней
+          </motion.span>
+          <h1 className="mt-6 flex flex-wrap gap-x-3 gap-y-1 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-[64px]">
+            {headline.map((word, i) => (
+              <motion.span
+                key={i}
+                className="inline-block overflow-hidden pb-1"
+                variants={{
+                  hidden: { opacity: 0, y: "100%" },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+                  },
+                }}
+              >
+                <span className={accentIdx.has(i) ? "text-gradient" : ""}>{word}</span>
+              </motion.span>
+            ))}
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-[var(--color-muted-foreground)]">
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+            }}
+            className="mt-6 max-w-xl text-lg text-[var(--color-muted-foreground)]"
+          >
             Настраиваем рекламу, создаём воронки и приводим только
             заинтересованных клиентов. Прозрачно, предсказуемо, с гарантией
             результата.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          </motion.p>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+            }}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
             <PrimaryButton href="#cta">Получить консультацию</PrimaryButton>
             <GhostButton href="#cases">Смотреть кейсы</GhostButton>
-          </div>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-3">
+          </motion.div>
+          <motion.ul
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+            }}
+            className="mt-10 grid gap-3 sm:grid-cols-3"
+          >
             {[
               "Более 200 проектов",
               "До 300 заявок в месяц",
               "Работаем по всему СНГ",
             ].map((t) => (
-              <li
+              <motion.li
                 key={t}
+                variants={{
+                  hidden: { opacity: 0, y: 12 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                }}
                 className="flex items-center gap-2 text-sm text-[var(--color-muted-foreground)]"
               >
                 <span className="grid h-5 w-5 place-items-center rounded-full bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
                   <Check className="h-3 w-3" />
                 </span>
                 {t}
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </motion.div>
 
         <motion.div
@@ -285,7 +362,11 @@ function Hero() {
               }}
             />
           </motion.div>
-          <div className="relative overflow-hidden rounded-3xl border hairline bg-[var(--color-card)]/40 p-2 shadow-[var(--shadow-card)] backdrop-blur">
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="relative overflow-hidden rounded-3xl border hairline bg-[var(--color-card)]/40 p-2 shadow-[var(--shadow-card)] backdrop-blur"
+          >
             <img
               src={heroImg}
               alt="Панель аналитики: заявки, воронки продаж, рост показателей"
@@ -293,21 +374,49 @@ function Hero() {
               height={1280}
               className="h-auto w-full rounded-2xl"
             />
-          </div>
+            {/* Shimmer sweep */}
+            <motion.div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-2xl"
+              style={{
+                background:
+                  "linear-gradient(115deg, transparent 30%, oklch(1 0 0 / 0.12) 50%, transparent 70%)",
+              }}
+              animate={{ x: ["-120%", "120%"] }}
+              transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}
+            />
+          </motion.div>
           <FloatingChip
             className="left-4 top-8 sm:-left-6"
             icon={<Sparkles className="h-4 w-4" />}
             title="+327% заявок"
             sub="за 2 месяца"
+            floatDelay={0}
           />
           <FloatingChip
             className="bottom-6 right-4 sm:-right-6"
             icon={<BarChart3 className="h-4 w-4" />}
             title="ROAS 6.4×"
             sub="средний по кампаниям"
+            floatDelay={1.2}
           />
         </motion.div>
       </div>
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.8 }}
+        className="pointer-events-none absolute inset-x-0 bottom-6 hidden justify-center lg:flex"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex h-10 w-6 items-start justify-center rounded-full border hairline p-1.5"
+        >
+          <span className="h-2 w-1 rounded-full bg-[var(--color-accent)]" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
@@ -317,17 +426,22 @@ function FloatingChip({
   icon,
   title,
   sub,
+  floatDelay = 0,
 }: {
   className?: string;
   icon: React.ReactNode;
   title: string;
   sub: string;
+  floatDelay?: number;
 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6, duration: 0.6 }}
+      animate={{ opacity: 1, y: [0, -10, 0] }}
+      transition={{
+        opacity: { delay: 0.6, duration: 0.6 },
+        y: { delay: 0.9 + floatDelay, duration: 5, repeat: Infinity, ease: "easeInOut" },
+      }}
       className={`absolute z-10 flex items-center gap-3 rounded-2xl border hairline bg-[var(--color-card)]/90 px-4 py-3 shadow-[var(--shadow-card)] backdrop-blur-xl ${className}`}
     >
       <span
