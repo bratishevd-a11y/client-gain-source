@@ -190,3 +190,26 @@
 @utility hairline {
   border-color: var(--hairline);
 }
+
+@utility input-base {
+  width: 100%;
+  border-radius: 0.875rem;
+  border: 1px solid var(--hairline);
+  background-color: color-mix(in oklab, var(--color-card) 60%, transparent);
+  padding: 0.85rem 1rem;
+  color: var(--color-foreground);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+
+  &::placeholder {
+    color: var(--color-muted-foreground);
+  }
+  &:hover {
+    border-color: color-mix(in oklab, white 18%, transparent);
+  }
+  &:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px oklch(0.68 0.17 240 / 0.15);
+  }
+}
