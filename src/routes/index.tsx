@@ -20,7 +20,7 @@ import {
   Phone,
   Mail,
   Send,
-  MessageCircle,
+  Instagram,
   Menu,
   X,
 } from "lucide-react";
@@ -1012,19 +1012,22 @@ function Footer() {
             { label: "+7 (999) 000-00-00", href: "tel:+79990000000", icon: Phone },
             { label: "hello@leadflow.io", href: "mailto:hello@leadflow.io", icon: Mail },
             { label: "Telegram", href: "https://t.me/", icon: Send },
-            { label: "WhatsApp", href: "https://wa.me/", icon: MessageCircle },
+            { label: "Instagram", href: "https://instagram.com/", icon: Instagram },
           ]}
         />
         <div>
           <div className="text-sm font-semibold text-white">Соцсети</div>
           <div className="mt-4 flex gap-2">
-            {["IN", "TG", "VK", "YT"].map((s) => (
+            {[
+              { label: "TG", href: "https://t.me/" },
+              { label: "IG", href: "https://instagram.com/" },
+            ].map((s) => (
               <a
-                key={s}
-                href="#"
+                key={s.label}
+                href={s.href}
                 className="grid h-10 w-10 place-items-center rounded-xl border hairline text-xs font-bold text-[var(--color-muted-foreground)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-accent)]/40 hover:text-white"
               >
-                {s}
+                {s.label}
               </a>
             ))}
           </div>
