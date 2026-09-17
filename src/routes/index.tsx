@@ -800,6 +800,7 @@ function FAQ() {
       <SectionHeading
         eyebrow="FAQ"
         title={<>Частые <span className="text-gradient">вопросы</span></>}
+        subtitle="Ответы на вопросы по лидогенерации и продвижению бизнеса в Узбекистане"
       />
       <div className="mx-auto mt-14 max-w-3xl divide-y divide-white/[0.08] rounded-3xl border hairline bg-[var(--color-card)]/40">
         {faq.map((f, i) => {
