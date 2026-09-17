@@ -20,7 +20,7 @@ import {
   Phone,
   Mail,
   Send,
-  MessageCircle,
+  Instagram,
   Menu,
   X,
 } from "lucide-react";
